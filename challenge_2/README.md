@@ -34,7 +34,10 @@ Use Express to build a single-page client-server app that generates CSV reports 
 ###question
 - how to send status and json at the same time 
 [] discripancy between console.log vs postman post response 
+[] why does children disappear in the root obj
+[] suppose to write file>
 [√] is the jquery instation correct? index.html line 8
+
 
 ###to record:
 bookmark
