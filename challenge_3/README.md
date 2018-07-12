@@ -34,10 +34,12 @@ Use MongoDB or MySQL to store your user data
 - [ ]all react in one file?
 - [ ]why the get status doesn't get console.log
 - [ ]f1 - f3 do they need to be on one page? or separte end point
+-[]  point of having a callback in the callback in mysql connection func 
 
 ### to do
 - [ ]know babel command for transpile
 -[] record folder structrues
+-
 -[] find site for the structure files of DB
 	- schema.sql
 	- modeller

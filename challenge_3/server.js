@@ -25,31 +25,32 @@ app.post('/', function (req, res) { //request body would be an array
 	if(req.body.type === 'PageOne'){
 		models.insertOne(req.body, (err, results) => {
 			if(err){
-				throw error;
-				res.sendStatus(404);
+				res.status(404).send(err);
 			}else{
 				console.log('PageOne Inserted to Database');
 				res.sendStatus(201);
 			}
 		})
+	}else if(req.body.type === 'PageTwo'){
+		models.updateTwo(req.body, (err, results) => {
+			if(err){
+				res.status(404).send(err);
+			}else{
+				console.log('PageTwo Updated to Database');
+				res.sendStatus(201);
+			}
+		})
+	}else if(req.body.type === 'PageThree'){
+		console.log(req.body);
+		models.updateThree(req.body, (err, results) => {
+			if(err){
+				res.status(404).send(err);
+			}else{
+				console.log('Pagethree Updated to Database');
+				res.sendStatus(201);
+			}
+		})
 	}
-	// else if(req.body.type === 'PageTwo'){
-
-	// }else if(req.body.type === 'PageThree'){
-	// 	//send back inform
-		
-	// }
-	// models.insertOne(req.body, (err, results) => {
-	// 	if(err){
-	// 		throw error;
-	// 		res.sendStatus(404);
-	// 	}else{
-	// 		console.log(req.body);
-	// 		res.sendStatus(201);
-	// 	}
-	// })
-	// console.log(req.body);
-	// res.sendStatus(201);
 
 });
 

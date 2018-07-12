@@ -7,13 +7,15 @@ USE checkoutApp;
 
 CREATE TABLE IF NOT EXISTS UserInfo (
 	ID INT AUTO_INCREMENT,
-	name VARCHAR(100), 
-	email VARCHAR(100),
-	password VARCHAR(100), 
-	shipAddress VARCHAR(100), 
+	name VARCHAR(100) NOT NULL, 
+	email VARCHAR(100) NOT NULL,
+	password VARCHAR(100) NOT NULL, 
 	phoneNumber INT,
+	shipAddress VARCHAR(100), 
 	creditCard INT, 
+	billAddress VARCHAR(100),
 	PRIMARY KEY(id)
 );
 
+USE checkoutApp;
 
