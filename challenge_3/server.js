@@ -20,16 +20,38 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-// app.post('/', function (req, res) { //request body would be an array
-// 	models.insertOne(req.body, (err, results) => {
-// 		if(err){
-// 			throw error;
-// 			res.sendStatus(404);
-// 		}else{
-// 			res.sendStatus(201);
-// 		}
-// 	})
-// });
+app.post('/', function (req, res) { //request body would be an array
+
+	if(req.body.type === 'PageOne'){
+		models.insertOne(req.body, (err, results) => {
+			if(err){
+				throw error;
+				res.sendStatus(404);
+			}else{
+				console.log('PageOne Inserted to Database');
+				res.sendStatus(201);
+			}
+		})
+	}
+	// else if(req.body.type === 'PageTwo'){
+
+	// }else if(req.body.type === 'PageThree'){
+	// 	//send back inform
+		
+	// }
+	// models.insertOne(req.body, (err, results) => {
+	// 	if(err){
+	// 		throw error;
+	// 		res.sendStatus(404);
+	// 	}else{
+	// 		console.log(req.body);
+	// 		res.sendStatus(201);
+	// 	}
+	// })
+	// console.log(req.body);
+	// res.sendStatus(201);
+
+});
 
 //need to wait for the user to finish to retrieve the info
 

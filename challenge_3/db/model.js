@@ -7,13 +7,19 @@ connection.connect(function(err) {
     return;
   }
 
-  console.log('connected as id ' + connection.threadId);
+  console.log('connected as id ' + connection.threadId + ' @ '+ Date());
 });
 
 
 
 var insertOne = function(input, cb){ //name email and address 
-	connection.query('INSERT INTO userinfo (name, email, password) VALUES(?, ?, ?)', input, cb);
+  var array = Object.values(input);
+  array.pop();
+  // console.log(array);
+
+  //{ name: 'd', email: 's', password: 'd', type: 'PageOne' }
+
+	connection.query('INSERT INTO userinfo (name, email, password) VALUES(?, ?, ?)', array, cb);
 };
 
 
@@ -23,14 +29,14 @@ var getSummary = function(userName, cb){ //name input in array
 
 
 // testing, 
-insertOne(["servio", "servio@gmail.com", "servioroad"], (error, results, fields)=>{
-  if (error){
-  	throw error;
-  } 
-  else{
-  	console.log('insert success!');
-  }
-})
+// insertOne(["servio", "servio@gmail.com", "servioroad"], (error, results, fields)=>{
+//   if (error){
+//   	throw error;
+//   } 
+//   else{
+//   	console.log('insert success!');
+//   }
+// })
 
 // getSummary(["sarah lee"], (error, results)=>{
 //   if (error){

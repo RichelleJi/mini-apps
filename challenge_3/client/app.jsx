@@ -1,3 +1,4 @@
+// import axios from 'axios';
 var stageArray = ['PageStart', 'PageOne', 'PageTwo', 'PageThree', 'PageEnd'];
   var counter = 0;
 
@@ -10,9 +11,22 @@ class App extends React.Component{
 
   handleClick(inputObj) { // where the button takes your
   	counter++;
-  	console.log(inputObj.type);
     this.setState({stage: stageArray[counter]});
-  }
+	    if(inputObj.type.length >5){
+	    	 console.log(inputObj.type);
+			$.ajax({
+			  type: "POST",
+			  url: 'http://127.0.0.1:3000/', 
+			  data: inputObj,
+			  success: function(newData){
+			  	console.log(newData);
+			  },
+			  dataType: "json"
+			});
+		}
+    }
+    // console.log(typeof(inputObj));
+  
 
   render() {
  	let Component = eval(this.state.stage);
@@ -84,7 +98,7 @@ class PageTwo extends React.Component{
 	this.handleProvChange = this.handleProvChange.bind(this);
 	this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
   	this.state = {
-  		number: "", 
+  		number: "", //is a number
   		lineOne: '',
 	  	lineTwo:'',
 	  	City:'',
@@ -135,25 +149,65 @@ class PageTwo extends React.Component{
 	}
 }
 
-function PageThree({handleClick}) {
-  return (
-  	<div>
-  		hi
-	    <button onClick={handleClick}>
-	      3
-	    </button>
-    </div>
-  );
+
+class PageThree extends React.Component{
+	constructor(props){
+  	super(props);
+	this.handlecardNumberChange = this.handlecardNumberChange.bind(this);
+	this.handleExpiryChange = this.handleExpiryChange.bind(this);
+	this.handleCVVChange = this.handleCVVChange.bind(this);
+	this.handlebillZipCodeChange = this.handlebillZipCodeChange.bind(this);
+  	this.state = {
+  		cardNumber: '',
+	  	Expiry:'',
+	  	CVV:'',
+	  	billZipCode: '',
+	  	type:'PageThree'
+	  };
+  }
+  	handlecardNumberChange(input){
+  		this.setState({cardNumber:input.target.value});
+  		// console.log(this.state.cardNumber);
+  	}
+
+	handleExpiryChange(input){
+  		this.setState({Expiry:input.target.value});
+  		// console.log(this.state.Expiry);
+  	}
+
+	handleCVVChange(input){
+  		this.setState({CVV:input.target.value});
+  		// console.log(this.state.CVV);
+  	}
+
+	handlebillZipCodeChange(input){
+  		this.setState({billZipCode:input.target.value});
+  		// console.log(this.state.billZipCode);
+  	}
+// credit card #, expiry date, CVV, and billing zip code.
+	render(){
+		return (
+			<div>
+			<h1>Your credit card information</h1>
+			<input type="text" placeholder="Credit Card Number"  value={this.state.cardNumber} onChange={this.handlecardNumberChange}/>
+		    <input type="text" placeholder="Expiry Date"  value={this.state.Expiry} onChange={this.handleExpiryChange}/>
+		    <br></br>
+		    <input type="text" placeholder="CVV"  value={this.state.CVV} onChange={this.handleCVVChange}/>
+			<input type="text" placeholder="Billing ZipCode"  value={this.state.billZipCode} onChange={this.handlebillZipCodeChange}/>
+			<br></br>
+			<button onClick={()=>{this.props.handleClick(this.state)}}>Next</button>
+			</div>
+		);
+	}
 }
 
 
 function PageEnd({handleClick}) {
+
+	//get request for all info
   return (
   	<div>
-  		hi
-	    <button onClick={handleClick}>
-	      end
-	    </button>
+  		<h1>Your Information Summary</h1>
     </div>
   );
 }
