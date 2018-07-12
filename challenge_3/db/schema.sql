@@ -12,8 +12,7 @@ CREATE TABLE IF NOT EXISTS UserInfo (
 	password VARCHAR(100) NOT NULL, 
 	phoneNumber INT,
 	shipAddress VARCHAR(100), 
-	creditCard INT, 
-	billAddress VARCHAR(100),
+	creditCard VARCHAR(100), 
 	PRIMARY KEY(id)
 );
 

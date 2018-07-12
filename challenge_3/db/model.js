@@ -34,11 +34,7 @@ var updateTwo = function(input, cb){ //name email and address
 };
 
 
-var threeObj = { cardNumber: 'sdf',
-  Expiry: 'ssdf',
-  CVV: 'sd',
-  billZipCode: 'sdf',
-  type: 'PageThree' }
+
 
 var updateThree = function(input, cb){ //name email and address 
   input = Object.values(input); //turn in to an array of inputs 
@@ -46,12 +42,12 @@ var updateThree = function(input, cb){ //name email and address
   input.pop();//delete the type value
   array.push(input.join(', '), client);
   console.log(array);
-  connection.query('UPDATE userinfo SET creditCard = ?,  billAddress = ? WHERE name = ?', array, cb);
+  connection.query('UPDATE userinfo SET creditCard = ? WHERE name = ?', array, cb);
 };
 
 
 var getSummary = function(userName, cb){ //name input in array
-	connection.query('select * from userinfo where name  = ?', userName, cb);
+	connection.query('select * from userinfo where name  = ?', client, cb);
 };
 
 
@@ -121,14 +117,22 @@ var getSummary = function(userName, cb){ //name input in array
 //   }
 // })
 
-updateThree(threeObj, (error, results, fields)=>{
-  if (error){
-   throw error;
-  } 
-  else{
-   console.log('insert success!');
-  }
-})
+// test 3--------
+
+// var threeObj = { cardNumber: 'sdf',
+//   Expiry: 'ssdf',
+//   CVV: 'sd',
+//   billZipCode: 'sdf',
+//   type: 'PageThree' }
+
+// updateThree(threeObj, (error, results, fields)=>{
+//   if (error){
+//    throw error;
+//   } 
+//   else{
+//    console.log('insert success!');
+//   }
+// })
 
 
 exports.insertOne = insertOne;
