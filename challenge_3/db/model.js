@@ -33,21 +33,31 @@ var updateTwo = function(input, cb){ //name email and address
   connection.query('UPDATE userinfo SET phoneNumber = ?,  shipAddress = ? WHERE name = ?', array, cb);
 };
 
-
-
-
 var updateThree = function(input, cb){ //name email and address 
   input = Object.values(input); //turn in to an array of inputs 
   var array = [];
   input.pop();//delete the type value
   array.push(input.join(', '), client);
   console.log(array);
-  connection.query('UPDATE userinfo SET creditCard = ? WHERE name = ?', array, cb);
+  connection.query('UPDATE userinfo SET creditCard = ? WHERE name = ?', array, function (error, results) {
+    if(error){
+      cb(error);
+      return
+    }else{
+      cb(null, results);
+    }
+});
 };
 
-
-var getSummary = function(userName, cb){ //name input in array
-	connection.query('select * from userinfo where name  = ?', client, cb);
+var getSummary = function(cb){ //name input in array
+	connection.query('select * from userinfo where name  = ?', client, function (error, results) {
+    if(error){
+      cb(error);
+      return
+    }else{
+      cb(null, results);
+    }
+  });
 };
 
 

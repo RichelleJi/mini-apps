@@ -6,33 +6,49 @@ class App extends React.Component{
   constructor(props) {
   	super(props);
 	this.handleClick =  this.handleClick.bind(this);
-    this.state = {stage: 'PageStart'};
+	this.handleSummaryData = this.handleSummaryData.bind(this);
+    this.state = {stage: 'PageStart', 
+				  summaryInfo: ''};
   }
+
+  handleSummaryData(Data){
+  	this.setState({summaryInfo: Data});
+  	// console.log("handlesummarydata", Data);
+  	console.log('thisstate', this.state.summaryInfo);
+}
+	
+
+	postRequest(inputObj, callback){
+		$.ajax({
+		  type: "POST",
+		  url: 'http://127.0.0.1:3000/', 
+		  data: inputObj,
+		  success: function(newData){
+			callback(newData);
+		  	// this.setState({summaryInfo: newData});
+		  	// console.log(newData);
+		  },
+		  dataType: "json"
+		});
+	}
 
   handleClick(inputObj) { // where the button takes your
   	counter++;
+  	console.log(this.state.stage);
     this.setState({stage: stageArray[counter]});
 	    if(inputObj.type.length >5){
-	    	 console.log(inputObj.type);
-			$.ajax({
-			  type: "POST",
-			  url: 'http://127.0.0.1:3000/', 
-			  data: inputObj,
-			  success: function(newData){
-			  	console.log(newData);
-			  },
-			  dataType: "json"
-			});
+	    	this.postRequest(inputObj, this.handleSummaryData);
+	    	 // console.log(inputObj.type);
 		}
+		counter = counter === 4? -1: counter;
     }
-    // console.log(typeof(inputObj));
-  
+
 
   render() {
  	let Component = eval(this.state.stage);
     return (
       <div>
-      	<Component handleClick= {this.handleClick} />
+      	<Component handleClick= {this.handleClick}  summaryInfo = {this.state.summaryInfo} />
       </div>
     );
   }
@@ -202,15 +218,29 @@ class PageThree extends React.Component{
 }
 
 
-function PageEnd({handleClick}) {
 
+function PageEnd(props) {
+	console.log("endpage props", props.summaryInfo);
 	//get request for all info
   return (
   	<div>
   		<h1>Your Information Summary</h1>
+  		 <div>name: {props.summaryInfo}</div>
+  		<button onClick={props.handleClick}>Complete Purchase</button>
     </div>
   );
 }
+
+
+function summaryItem(props) {
+  return (
+  	<div>
+  		<p><b>{}</b>{}</p>
+    </div>
+  );
+}
+
+
 
 
 ReactDOM.render(< App/>, document.getElementById("app"));

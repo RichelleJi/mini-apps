@@ -41,17 +41,18 @@ app.post('/', function (req, res) { //request body would be an array
 			}
 		})
 	}else if(req.body.type === 'PageThree'){
-		console.log(req.body);
-		models.updateThree(req.body, (err, results) => {
+		// console.log(req.body);
+		console.log('Pagethree Updated to Database');
+		models.updateThree(req.body, models.getSummary((err, results) => {
 			if(err){
 				res.status(404).send(err);
 			}else{
-				console.log('Pagethree Updated to Database');
-				res.sendStatus(201);
+				console.log('Summary passing to Database');
+				res.json(results[0].name);
 			}
-		})
+			})
+		)
 	}
-
 });
 
 //need to wait for the user to finish to retrieve the info

@@ -37,6 +37,7 @@ Use MongoDB or MySQL to store your user data
 -[]  point of having a callback in the callback in mysql connection func 
 
 ### to do
+- [ ] redo the ajax call
 - [ ]know babel command for transpile
 -[] record folder structrues
 -
@@ -49,3 +50,5 @@ Use MongoDB or MySQL to store your user data
 	- root user
 	- how do you know the syntax for PRIMARY KEY(id) from official doc 
 - [] should we use connection end
+- [] how does add grocery work 
+
