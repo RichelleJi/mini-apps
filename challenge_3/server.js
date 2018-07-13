@@ -41,16 +41,22 @@ app.post('/', function (req, res) { //request body would be an array
 			}
 		})
 	}else if(req.body.type === 'PageThree'){
-		// console.log(req.body);
 		console.log('Pagethree Updated to Database');
-		models.updateThree(req.body, models.getSummary((err, results) => {
+		models.updateThree(req.body, (err, results) =>{
 			if(err){
 				res.status(404).send(err);
 			}else{
-				console.log('Summary passing to Database');
-				res.json(results[0].name);
+					models.getSummary((err, results) => {
+						if(err){
+							res.status(404).send(err);
+						}else{
+							console.log('Summary passing to Database');
+							res.json(Object.values(results[0]));
+							// res.json(results[0]);
+						}
+					})
+				}
 			}
-			})
 		)
 	}
 });

@@ -225,22 +225,15 @@ function PageEnd(props) {
   return (
   	<div>
   		<h1>Your Information Summary</h1>
-  		 <div>name: {props.summaryInfo}</div>
+      <p><b>Name: </b>{props.summaryInfo[1]}</p>
+      <p><b>Email: </b>{props.summaryInfo[2]}</p>
+      <p><b>Password: </b>{props.summaryInfo[3]}</p>
+      <p><b>Phone number: </b>{props.summaryInfo[4]}</p>
+      <p><b>Address: </b>{props.summaryInfo[5]}</p>
+      <p><b>Credit card: </b>{props.summaryInfo[6]}</p>
   		<button onClick={props.handleClick}>Complete Purchase</button>
     </div>
   );
 }
-
-
-function summaryItem(props) {
-  return (
-  	<div>
-  		<p><b>{}</b>{}</p>
-    </div>
-  );
-}
-
-
-
 
 ReactDOM.render(< App/>, document.getElementById("app"));
