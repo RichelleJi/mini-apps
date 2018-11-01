@@ -19,7 +19,7 @@
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
-- etc
+
 
 ## Development
 
@@ -36,9 +36,7 @@ npm install
 Starting Webpack and Running Server:
 
 ```sh
-npm run trans //putting Babel on watch
 npm start
-
 ```
 
 ## Built With
