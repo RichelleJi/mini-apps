@@ -1,10 +1,6 @@
-#Mini app - Checkout App
-
-Build a single-page app that takes a user through a series of forms that simulate a shopping cart checkout experience. Used Express for the server, ReactJS for the front-end, pre-compiled views using Babel, MySQal for database.
-
 # Checkout application 
 
-> A single-page app that takes a user through a series of forms that simulate a shopping cart checkout experience.
+> A single-page app that takes a user through a series of forms that simulate a shopping cart checkout experience.Used Express for the server, ReactJS for the front-end, pre-compiled views using Babel, MySQal for database.
 
 
 ## Table of Contents
