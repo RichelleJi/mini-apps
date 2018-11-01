@@ -42,13 +42,9 @@ npm start
 ```
 
 ## Built With
-* ReactJS
 * NodeJS
-* Babel
-* mySql
 * jQuery
 * expressJS
-* axio
 
 
 
